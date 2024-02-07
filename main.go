@@ -11,12 +11,16 @@ func (i *portlist) String() string {
 }
 
 func main() {
+	// Command line arguments
+
 	// if the hostname is not provided use localhost
 
-	address := flag.String("h", "127.0.0.1", "hostname")
+	address := flag.String("h", "127.0.0.1", "target hostname")
 
 	port_range := flag.String("r", "1-1024", "port range")
+
 	port := flag.String("p", "", "port list")
+
 	flag.Parse()
 
 	scanner := NewScanner(*address)

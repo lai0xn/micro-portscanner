@@ -12,12 +12,12 @@ import (
 
 const (
 
-	// TCP is the network we are scanning
+	// TCP is the protocol we are scanning
 	TCP string = "tcp"
 )
 
 type PortScanner struct {
-	// The Host we're scanning
+	// The adress we're scanning
 
 	ADDR string
 }
@@ -51,11 +51,14 @@ func (p *PortScanner) ScanPort(port string) {
 }
 
 func (p *PortScanner) ScanRange(ip_range string) {
+	//  Use regex to validate the user input
+
 	re := regexp.MustCompile(`^\d+-\d+$`)
 	is_valid := re.MatchString(ip_range)
 	if !is_valid {
 		log.Fatal("invalid ip range")
 	}
+	// convert the input string into integers
 	port_range := strings.Split(ip_range, "-")
 	start, err := strconv.Atoi(port_range[0])
 	if err != nil {
@@ -65,6 +68,7 @@ func (p *PortScanner) ScanRange(ip_range string) {
 	if err != nil {
 		panic(err)
 	}
+	// scan every port in range
 	for i := start; i <= end; i++ {
 		p.ScanPort(fmt.Sprint(i))
 	}
