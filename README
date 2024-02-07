@@ -1,0 +1,11 @@
+Get the binary from the bin folder
+
+example usage :
+display help message
+./portscanner --help
+
+scan ports from 1 to 100
+./portscanner -h google.com -r 1-100
+
+scan a single port
+./portscanner -h google.com -p 80
